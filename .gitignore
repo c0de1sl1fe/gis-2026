@@ -25,6 +25,8 @@ dist-ssr
 
 node_modules/
 dist/
+.venv/
 
 /lab2/node_modules/
 /lab2/geoserver_data/logs/
+/example/

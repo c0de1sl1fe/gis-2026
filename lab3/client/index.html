@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overture Maps — Тематическая карта зданий</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 20px;
+        background: #1e293b;
+        border-bottom: 1px solid #334155;
+        flex-shrink: 0;
+        z-index: 10;
+      }
+
+      header h1 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #f1f5f9;
+      }
+
+      header span.subtitle {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+
+      #map {
+        flex: 1;
+        width: 100%;
+      }
+
+      #legend {
+        position: absolute;
+        bottom: 32px;
+        right: 16px;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid #334155;
+        border-radius: 10px;
+        padding: 14px 18px;
+        backdrop-filter: blur(8px);
+        z-index: 100;
+        min-width: 200px;
+      }
+
+      #legend h2 {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        font-size: 0.82rem;
+        color: #cbd5e1;
+      }
+
+      .legend-item:last-child { margin-bottom: 0; }
+
+      .swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        flex-shrink: 0;
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+
+      #tooltip {
+        position: absolute;
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 0.78rem;
+        color: #e2e8f0;
+        pointer-events: none;
+        display: none;
+        z-index: 200;
+        max-width: 230px;
+        line-height: 1.6;
+        backdrop-filter: blur(6px);
+      }
+
+      #tooltip strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.82rem;
+      }
+
+      #stats {
+        position: absolute;
+        top: 62px;
+        left: 16px;
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 0.75rem;
+        color: #94a3b8;
+        z-index: 100;
+        backdrop-filter: blur(6px);
+      }
+
+      #stats span { color: #e2e8f0; font-weight: 600; }
+
+      .ol-attribution {
+        background: rgba(15,23,42,0.7) !important;
+        color: #64748b !important;
+      }
+
+      .ol-attribution a { color: #64748b !important; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Тематическая карта зданий</h1>
+      <span class="subtitle">Overture Maps · ЛР3</span>
+    </header>
+
+    <div id="map"></div>
+
+    <div id="legend">
+      <h2>Источник данных</h2>
+      <div class="legend-item">
+        <div class="swatch" style="background:#22c55e;"></div>
+        <span>Пользовательские (my)</span>
+      </div>
+      <div class="legend-item">
+        <div class="swatch" style="background:#3b82f6;"></div>
+        <span>OpenStreetMap (osm)</span>
+      </div>
+      <div class="legend-item">
+        <div class="swatch" style="background:#f97316;"></div>
+        <span>ML-распознавание (ml)</span>
+      </div>
+    </div>
+
+    <div id="stats">Загрузка…</div>
+    <div id="tooltip"></div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
