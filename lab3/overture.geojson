@@ -2946,7 +2946,7 @@
       },
       "properties": {
         "id": "0e11407a-e950-4b1b-8d51-6fac0a254ba4",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "2",
         "class": "house",
@@ -2984,7 +2984,7 @@
       },
       "properties": {
         "id": "17444285-f5ec-4b7d-9ba0-2286caace552",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "2",
         "class": "house",
@@ -3372,7 +3372,7 @@
       },
       "properties": {
         "id": "d022a0b4-2412-463f-8615-6627253cece3",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "1",
         "class": "house",
@@ -3410,7 +3410,7 @@
       },
       "properties": {
         "id": "d11b9828-acac-469f-89f1-78cadf23445c",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "1",
         "class": "house",
@@ -6834,7 +6834,7 @@
       },
       "properties": {
         "id": "ede2692f-d091-4657-8d77-d1cbcd2d7dba",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "1",
         "class": "house",
@@ -7374,7 +7374,7 @@
       },
       "properties": {
         "id": "207e8166-c918-4633-8ebb-a48a301a21ee",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "1",
         "class": "house",
@@ -7450,7 +7450,7 @@
       },
       "properties": {
         "id": "6615c5a0-b281-4234-8a90-0a3e997d3e56",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "2",
         "class": "house",
@@ -7526,7 +7526,7 @@
       },
       "properties": {
         "id": "c0c90e8d-7066-4e4f-a4e1-ea2ec17d0c14",
-        "source_type": "osm",
+        "source_type": "my",
         "height": "",
         "num_floors": "2",
         "class": "house",

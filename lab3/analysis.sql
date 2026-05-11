@@ -20,9 +20,10 @@ SELECT
     building,
     "building:levels"     AS building_levels,
     "addr:street"         AS addr_street,
-    "addr:housenumber"    AS addr_housenumber,
-    "addr:place"          AS addr_place
-FROM ST_Read('../lab1/map.geojson');
+    "addr:housenumber"    AS addr_housenumber
+FROM ST_Read('../lab1/map-first-try.geojson')
+WHERE ST_GeometryType(geom) IN ('POLYGON', 'MULTIPOLYGON')
+  AND building IS NOT NULL AND building != '';
 
 SELECT
     'user_buildings' AS table_name,
@@ -72,7 +73,7 @@ CREATE OR REPLACE TEMP TABLE my_ids AS
 SELECT DISTINCT o.id
 FROM overture_buildings o
 JOIN user_buildings u
-  ON ST_Intersects(ST_SetCRS(o.geom, 'EPSG:4326'), u.geom);
+  ON try(ST_Intersects(ST_SetCRS(o.geom, 'EPSG:4326'), u.geom)) = true;
 
 UPDATE overture_buildings
 SET source_type = CASE

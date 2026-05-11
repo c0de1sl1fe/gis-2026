@@ -10,7 +10,7 @@ import duckdb
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
-GEOJSON_IN    = os.path.join(BASE_DIR, '..', 'lab1', 'map.geojson')
+GEOJSON_IN    = os.path.join(BASE_DIR, '..', 'lab1', 'map-first-try.geojson')
 GEOJSON_OUT   = os.path.join(BASE_DIR, 'overture.geojson')
 CLIENT_PUBLIC = os.path.join(BASE_DIR, 'client', 'public', 'overture.geojson')
 
@@ -88,9 +88,10 @@ def load_user_buildings(con: duckdb.DuckDBPyConnection) -> None:
             building,
             "building:levels"   AS building_levels,
             "addr:street"       AS addr_street,
-            "addr:housenumber"  AS addr_housenumber,
-            "addr:place"        AS addr_place
+            "addr:housenumber"  AS addr_housenumber
         FROM ST_Read('{path}')
+        WHERE ST_GeometryType(geom) IN ('POLYGON', 'MULTIPOLYGON')
+          AND building IS NOT NULL AND building != ''
     """)
     n = con.execute('SELECT COUNT(*) FROM user_buildings').fetchone()[0]
     print(f'[3.1] User buildings loaded: {n}')
@@ -128,7 +129,7 @@ def classify_sources(con: duckdb.DuckDBPyConnection) -> None:
         SELECT DISTINCT o.id
         FROM overture_buildings o
         JOIN user_buildings u
-          ON ST_Intersects(ST_SetCRS(o.geom, 'EPSG:4326'), u.geom)
+          ON try(ST_Intersects(ST_SetCRS(o.geom, 'EPSG:4326'), u.geom)) = true
     """)
     con.execute("""
         UPDATE overture_buildings
