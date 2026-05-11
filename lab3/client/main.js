@@ -16,7 +16,7 @@ import MAPBOX_STYLE from './style.json';
 const wmsLayer = new ImageLayer({
   source: new ImageWMS({
     url: 'http://localhost:8080/geoserver/gis/wms',
-    params: { LAYERS: 'gis:buildings,gis:roads,gis:poi', TILED: true },
+    params: { LAYERS: 'gis:buildings,gis:roads', TILED: true },
     ratio: 1,
     serverType: 'geoserver',
   }),
